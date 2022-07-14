@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>图片文本解读</title>
+	<style type="text/css">
+		#one{
+			margin-left: 100px;
+			margin-top: 30px;		}
+		#two{
+			margin-top: 10px;
+			width: 900px;
+			height: 400px;
+			display: flex;
+		}
+		#content{
+			width: 400px;
+			height: 400px;
+			margin-left: 10px;
+		}
+		#three{
+			margin-left: 100px;
+		}
+		#four{
+			display: flex;
+		}
+	</style>
+</head>
+<body>
+	<div id=one>
+		<label>请确认图片类型：</label>&nbsp;&nbsp;
+		<select>
+			<option>设备标签照片</option>
+		    <option>序列号照片</option>
+			<option>照片</option>
+		</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<br><br>
+
+		<div id=four>
+			<input type="submit" value="导入文件" onclick="send()">&nbsp;
+			<div id=three>
+				<input type="submit" value="旋转图片" onclick="turn()" >
+				<input type="submit" value="确定">
+			</div>
+		</div>
+		
+		
+		<br><br>
+
+		<label>图片名称：</label>&nbsp;
+		<input type="text" value="">
+		&nbsp;&nbsp;
+
+	</div>
+	<div id=two>
+		<img src="5.jpg" width="400" height="400">
+		<textarea rows="20" columns="1" id=content>123</textarea>
+		
+	</div>
+
+
+	<script type="text/javascript">
+		function send(){
+			xhr=null;
+		    if (window.XMLHttpRequest){// code for IE7, Firefox, Opera, etc.
+			    xhr=new XMLHttpRequest();
+		    }
+		    else if (window.ActiveXObject){// code for IE6, IE5
+			    xhr=new ActiveXObject("Microsoft.XMLHTTP");
+		    }
+		    if(xhr==null){
+			    window.alert("浏览器不适配");
+		    }else{
+
+		    	var url = "one.php";
+			    xhr.open("POST",url);
+                xhr.setRequestHeader ('Content-type', 'application/x-www-form-urlencoded');
+                var data="number= 1";
+                window.alert("ok");
+                xhr.send(data); 
+                //var respond=eval(xhr.responseText);
+                //window.alert(respond)
+		    }
+		}
+		function turn(){
+			window.alert("begin");
+			var label=document.getElementById("content");
+			var now="123"+"\n"+"123";
+			label.value=now;
+		}
+
+
+
+	</script>
+</body>
+</html>
