@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('', include('ocronline.urls')), # The first para is the website, the second is the command
+    # path('', include('ocronline.urls')), # The first para is the website, the second is the command
+    
     path('admin/', admin.site.urls),
 ]
