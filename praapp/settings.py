@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ["8.130.12.29"]
 # Application definition
 
 INSTALLED_APPS = [
-    'ocronline.apps.OcronlineConfig', #负责数据库的设置
+    'ocronline.apps.OcronlineConfig', #负责数据库的设置 类在apps.py文件中
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
