@@ -26,13 +26,13 @@ SECRET_KEY = 'django-insecure-+da(@y+h7t5%o9m+n)-+4-@h$q6!b0oxm%gmq$skam*2+cc_!j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["121.199.55.51"]
+ALLOWED_HOSTS = ["8.130.12.29"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'ocronline.apps.OcronlineConfig',
+    'ocronline.apps.OcronlineConfig', #负责数据库的设置
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -118,10 +118,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
+# 直接通过网页访问服务器上的static文件夹
 
+# static存开发者的文件
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
+# media存用户的文件
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 

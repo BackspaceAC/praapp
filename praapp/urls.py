@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 # 总项目的urls文件
+# 统领全局的urls 一般最后再设置
 
 from django.contrib import admin
 from django.urls import path, include
