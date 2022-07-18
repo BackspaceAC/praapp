@@ -1,5 +1,71 @@
 /* 一般一个项目一个css文件就行 */
+/* 设置页面所有对象的样式 */
 
 
-.ocr_online{
+ /* 加上点表示是一个类 */
+.ocr-menu{
+    width: 100%;
+    height: 100%;
+    background-image: url("/static/image/menu/5.jpg");
+    background-size: 100% 100%;
 }
+
+.one{
+    margin-left: 100px;
+    margin-top: 30px;
+}
+
+.two{
+    margin-top: 10px;
+    width: 900px;
+    height: 400px;
+    display: flex;
+}
+
+.content{
+    width: 400px;
+    height: 400px;
+    margin-left: 10px;
+}
+
+.three{
+    margin-left: 100px;
+}
+
+.four{
+    display: flex;
+}
+
+.menu-item{
+    color: black;
+    height: 4vh;
+    width: 10vw;
+    font-size: 3vh;
+    font-style: italic;
+    padding: 1vh;
+    text-align: center;
+    background-color: rgba(39, 21, 28, 0.6);
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.menu-item:hover {
+    transform: scale(1.2);
+    transition: 100ms;
+}
+/*
+.menu-item-importfile{
+    margin-left: ;
+    margin-top: ;
+}
+
+.menu-item-rotateimage{
+    margin-left: ;
+    margin-top: ;
+}
+
+.menu-item-clickok{
+    margin-left: 100;
+    margin-top: 
+}
+*/

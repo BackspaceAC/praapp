@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+
     <!-- 加入自己的css文件和打包好的js文件 -->
     <link rel="stylesheet" href="{% static 'css/ocronline.css' %}">
     <script src="{% static 'js/dist/ocr.js' %}"></script>
@@ -11,13 +12,14 @@
 
 
 
-
 <body style="margin: 0">
     <div id="zero"></div>
+    <!-- 以下是需要执行的js代码 -->
     <script>
         $(document).ready(function(){
             // 前端渲染到上面的div内
             // 如果直接写html 会在后端渲染完成再传回前端
+            // 调用的是static文件夹里的总zbase.js文件
             let ocrapp = new OcrApp("zero"); // 在用户的浏览器里创建了一个对象，所有的界面都在OcrApp类里面
         });
     </script>
