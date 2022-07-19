@@ -72,6 +72,29 @@ class OcrAppMenu {
         this.$importfile.click(function(){
             console.log("现在导入图片文件！！");
             alert("来辽");
+
+            // outer.hide(); // 隐藏菜单
+            // outer.root.playground.show(); // 显示下一个界面
+
+            var xhr=null;
+            if(window.XMLHttpRequest){// code for IE7, Firefox, Opera, etc.
+                xhr=new XMLHttpRequest();
+            }
+            else if (window.ActiveXObject){// code for IE6, IE5
+                xhr=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            if(xhr==null){
+                window.alert("浏览器不适配");
+            }
+            else{
+                var url = "static/one.php"; // 创建xhr对象
+                xhr.open("POST",url);
+                xhr.setRequestHeader ('Content-type', 'application/x-www-form-urlencoded');
+                var data="number= 1";
+                xhr.send(data);
+                //var respond=eval(xhr.responseText);
+                //window.alert(respond)
+            }
         });
         this.$rotateimage.click(function(){
             console.log("现在旋转图片！！");
@@ -79,5 +102,13 @@ class OcrAppMenu {
         this.$clickok.click(function(){
             console.log("点击确认！！");
         });
+    }
+
+    show() { // 显示menu界面
+        this.$menu.show();
+    }
+
+    hide() { // 关闭menu界面
+        this.$menu.hide();
     }
 }
