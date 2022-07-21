@@ -1,13 +1,14 @@
 // 还是总管的menu界面的js文件
-
+// 在浏览器执行
 
 class OcrAppMenu {
     constructor(root) { // 除了总类里 其他的都传总对象的实例也即ocrapp = new OcrApp()
         this.root = root; // 存下来
         // html对象前加上$
         // 创建一段html代码
+        // 自己定义类然后在css文件中设置类的样式
         this.$menu = $(`
-<!-- 对应的ocr-menu类在唯一的ocronline.css文件中有规定样式 -->
+<!-- 对应的ocr-menu类在唯一的ocronline.css文件中有规定样式 包括背景图片地址大小 -->
 <div class="ocr-menu">
 <!-- 此处为menu的zbase.js内的html界面代码 -->
     <div id=one>
@@ -19,22 +20,33 @@ class OcrAppMenu {
         </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <br><br>
 
+        <!-- 文件选择框
+        <input type="file" id="file"/>
+        <button></button>
+         -->
+
         <div id=four>
             <!-- <input type="submit" value="导入文件" onclick="send()">&nbsp; -->
-            <div class="menu-item menu-item-importfile">
-                导入文件
+            <div class="menu-item-importfile">
+                <input type="file" id="file" name="file" accpt="image/*">
             </div>
+
             <br>
+
             <div id=three>
                 <!-- <input type="submit" value="旋转图片" onclick="turn()"> -->
                 <!-- <input type="submit" value="确定"> -->
-                <div class="menu-item menu-item-rotateimage">
-                    旋转图片
+
+                <div class="menu-item-rotateimage">
+                    <button>旋转图片</button>
                 </div>
+
                 <br>
-                <div class="menu-item menu-item-clickok">
-                    确定
+
+                <div class="menu-item-clickok">
+                    <button>确定</button>
                 </div>
+
             </div>
         </div>
 
@@ -53,7 +65,8 @@ class OcrAppMenu {
 
 </div>
 `);
-        this.root.$ocr_app.append(this.$menu); // 将menu对象加入到web.html里的 “zero” div里
+        this.root.$ocr_app.append(this.$menu); // 将menu对象加入到web.html里的 “zero” div里 即将网页展示出来
+
         // 分别绑定到对象中
         this.$importfile = this.$menu.find('.menu-item-importfile');
         this.$rotateimage = this.$menu.find('.menu-item-rotateimage');
@@ -68,33 +81,57 @@ class OcrAppMenu {
     }
 
     listening() {
-        let outer = this;
+        // 从浏览器向服务器传
+        var outer = this;
         this.$importfile.click(function(){
             console.log("现在导入图片文件！！");
             alert("来辽");
+            $.ajax({
+                url: "http://8.130.12.29:8080/menu/getinfo/", // 用于路由
+                type: "GET",
+                data: {
+                    image_base64: "YU"
+                },
+                success: function(resp){ // 回调函数
+                    console.log(resp);
+                    if(resp.result === "success"){
+                        // 上传成功？
+                        alert("Upload Success!!!!!!!");
+                    }
+                    else{
+                        // 上传失败？
+                        alert("Upload Failed!!!!!!!!");
+                    }
+                }
+
+            });
 
             // outer.hide(); // 隐藏菜单
             // outer.root.playground.show(); // 显示下一个界面
-
+            /*
             var xhr=null;
             if(window.XMLHttpRequest){// code for IE7, Firefox, Opera, etc.
                 xhr=new XMLHttpRequest();
+                alert("///////");
             }
             else if (window.ActiveXObject){// code for IE6, IE5
                 xhr=new ActiveXObject("Microsoft.XMLHTTP");
             }
             if(xhr==null){
-                window.alert("浏览器不适配");
+                alert("浏览器不适配");
             }
             else{
+                alert("///////");
                 var url = "static/one.php"; // 创建xhr对象
-                xhr.open("POST",url);
+                xhr.open("POST",url,false);
                 xhr.setRequestHeader ('Content-type', 'application/x-www-form-urlencoded');
                 var data="number= 1";
                 xhr.send(data);
-                //var respond=eval(xhr.responseText);
-                //window.alert(respond)
+                var respond=eval(xhr.responseText);
+                window.alert(respond);
             }
+            */
+
         });
         this.$rotateimage.click(function(){
             console.log("现在旋转图片！！");
@@ -112,12 +149,79 @@ class OcrAppMenu {
         this.$menu.hide();
     }
 }
-class OcrAppObject{
-    constructor() {
-        
+/*
+class OcrAppMap extends OcrAppObject{
+    constructor(playground) {
+        super();
+        this.playground = playground;
+        this.$canvas = $(`<canvas></canvas>`);
+
+        this.ctx = this.$canvas[0].getContext(`2d`);
+        // 画布的高宽与背景的高宽相同
+        this.ctx.canvas.width = this.playground.width;
+        this.ctx.canvas.height = this.playground.height;
+        this.playground.$playground.append(this.$canvas);
     }
 
+    start() {
+    }
+
+    update() {
+    }
 }
+*/
+let OCR_APP_OBJECTS = []; // 全局数组
+
+class OcrAppObject {
+    constructor() {
+        OCR_APP_OBJECTS.push(this);
+
+        this.has_called_start = false; // 是否执行过start函数
+        this.timedelta = 0; // 当前距离上一帧的时间间隔(ms)
+
+    }
+    start() { //只会在第一帧执行
+    }
+
+    update() { // 每一帧都会执行一次
+    }
+
+    on_destory() { // 销毁前执行
+    }
+
+    destory() { // 删掉该物体
+        this.on_destory();
+
+        for(let i = 0; i < OCR_APP_OBJECTS.length; i ++){
+            if(OCR_APP_OBJECTS[i] === this) {
+                OCR_APP_OBJECTS.splice(i, 1);
+                break;
+            }
+        }
+    }
+}
+
+
+let last_timestamp;
+let OCR_APP_ANIMATION = function(timestamp){
+
+    for(let i = 0; i < OCR_APP_OBJECTS.length; i ++){
+        let obj = OCR_APP_OBJECTS[i];
+        if(!obj.has_called_start) {
+            obj.start();
+            obj.has_called_start = true;
+        }
+        else{
+            obj.timedelta = timestamp - last_timestamp;
+            obj.update();
+        }
+    }
+    last_timestamp = timestamp;
+
+    requestAnimationFrame(OCR_APP_ANIMATION);
+}
+
+requestAnimationFrame(OCR_APP_ANIMATION); // 每秒钟调用
 class OcrAppPlayground{
     constructor(root){
         this.root = root;
@@ -126,8 +230,11 @@ class OcrAppPlayground{
         // 渲染后添加到网页里
         this.hide(); // 加入父对象前关闭 一打开网页时应该hide起来当前界面
         this.root.$ocr_app.append(this.$playground);
+
+        // playground属性
         this.width = this.$playground.width();
         this.height = this.$playground.height();
+        this.ocr_map = new OcrAppMap(this);
 
         this.start();
     }

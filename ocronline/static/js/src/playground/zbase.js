@@ -6,8 +6,11 @@ class OcrAppPlayground{
         // 渲染后添加到网页里
         this.hide(); // 加入父对象前关闭 一打开网页时应该hide起来当前界面
         this.root.$ocr_app.append(this.$playground);
+
+        // playground属性
         this.width = this.$playground.width();
         this.height = this.$playground.height();
+        this.ocr_map = new OcrAppMap(this);
 
         this.start();
     }

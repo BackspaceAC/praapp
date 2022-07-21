@@ -12,5 +12,5 @@ urlpatterns = [
     path("", index, name="index"), # 总函数不需要加路径 直接可以访问views文件夹里的index.py文件的index函数
     path("menu/", include("ocronline.urls.menu.index")),
     path("playground/", include("ocronline.urls.playground.index")),
-    path("settings", include("ocronline.urls.settings.index")),
+    path("settings/", include("ocronline.urls.settings.index")),
 ]

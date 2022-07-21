@@ -36,6 +36,7 @@
     display: flex;
 }
 
+/*
 .menu-item{
     color: black;
     height: 4vh;
@@ -53,6 +54,83 @@
     transform: scale(1.2);
     transition: 100ms;
 }
+
+*/
+
+.menu-item-importfile > input {
+    color: black;
+    height: 4vh;
+    width: 15vw;
+    font-size: 1vh;
+    font-style: italic;
+    padding: 1vh;
+    text-align: center;
+    background-color: rgba(39, 21, 28, 0.6);
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.menu-item-importfile .ico-class {
+    color: black;
+    height: 4vh;
+    width: 15vw;
+    font-size: 1vh;
+    font-style: italic;
+    padding: 1vh;
+    text-align: center;
+    background-color: rgba(39, 21, 28, 0.6);
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+
+
+.menu-item-importfile input:hover {
+    transform: scale(1.2);
+    transition: 100ms;
+}
+
+
+.menu-item-rotateimage button:hover {
+    transform: scale(1.2);
+    transition: 100ms;
+}
+
+
+.menu-item-clickok button:hover {
+    transform: scale(1.2);
+    transition: 100ms;
+}
+
+
+.menu-item-rotateimage > button {
+    color: black;
+    height: 5vh;
+    width: 15vw;
+    font-size: 2vh;
+    font-style: italic;
+    padding: 1vh;
+    text-align: center;
+    background-color: rgba(39, 21, 28, 0.6);
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.menu-item-clickok > button {
+    color: black;
+    height: 5vh;
+    width: 15vw;
+    font-size: 2vh;
+    font-style: italic;
+    padding: 1vh;
+    text-align: center;
+    background-color: rgba(39, 21, 28, 0.6);
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+
+
 /*
 .menu-item-importfile{
     margin-left: ;
@@ -70,7 +148,7 @@
 */
 
 /* playground css */
-.ocr-playground{
+.ocr-playground {
     width: 100%;
     height: 100%;
     user-select: none;
